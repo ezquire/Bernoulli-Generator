@@ -1,0 +1,31 @@
+model biased coins as "Biased coin toss model (multiple tosses )"
+
+const nat n as "number of tosses"
+
+data double bias as "bias towards heads"
+
+
+
+bool mode //0 for stat 1 for gen
+
+switch(mode) {
+
+case: 0
+  switch to stat mode
+
+case: 1
+  switch to gen mode
+
+}
+
+where 1 > bias.
+where 0 < bias.
+
+% Head count
+
+nat heads ∼ binomial (n , bias)
+where n ≥ heads
+where 0 =< heads
+where heads in 0..n.
+
+max pr ( heads | {n , bias }) for heads
