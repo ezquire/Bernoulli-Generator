@@ -1,0 +1,44 @@
+model biased coins as "Biased coin toss model (multiple tosses )"
+
+//variable declarations
+
+int numberOfTosses = 0;
+
+data double bias = 0.0;
+  //where 1 > bias.
+  //where 0 < bias.
+
+bool mode; //for tracking which mode the user wants
+
+/*
+*
+*Introduce program with come couts
+*
+*/
+
+//get the mode
+cout << "Would you like gen mode or stat mode?\n"
+cin >> mode;
+
+//get the number of tosses
+cout << "How many tosses should I run?\n"
+cin >> numberOfTosses
+
+switch(mode) {
+
+case: 0
+  switch to stat mode
+
+case: 1
+  switch to gen mode
+
+}
+
+% Head count
+
+nat heads ∼ binomial (n , bias)
+where n ≥ heads
+where 0 =< heads
+where heads in 0..n.
+
+max pr ( heads | {n , bias }) for heads
