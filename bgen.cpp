@@ -7,16 +7,18 @@
 
 using namespace std;
 
-int main()
+
+
+int bernoulli(int numberOfThrows, double bias)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    // give "true" 1/4 of the time
-    // give "false" 3/4 of the time
-    std::bernoulli_distribution d(0.25);
+    // give "true" based on percent bias
+    // give "false" based on percent bias
+    std::bernoulli_distribution d(bias);
 
     std::map<bool, int> hist;
-    for(int n=0; n<10000; ++n) {
+    for(int n=0; n<numberOfThrows; ++n) {
         ++hist[d(gen)];
     }
     for(auto p : hist) {
