@@ -17,12 +17,12 @@ bool mode; //for tracking which mode the user wants
 */
 
 //get the mode
-cout << "Would you like gen mode or stat mode?\n"
+cout << "Would you like gen mode or stat mode? Select 0 for stat mode and and 1 for gen mode.\n"
 cin >> mode;
 
 //get the number of tosses
 cout << "How many tosses should I run?\n"
-cin >> numberOfTosses
+cin >> numberOfTosses;
 
 switch(mode) {
 
