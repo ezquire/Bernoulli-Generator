@@ -15,12 +15,12 @@ void bgen(const char*, int, int, float, int, const char*);
 
 //Variable for number of tosses the user would like to see.
 const char* GEN_MODE = "gen";
-const char* STAT_MODE = "stat"
+const char* STAT_MODE = "stat";
 int numberOfExperiments = 0;
 int numberOfTrials = 0;
 float probabilityBias = 0.0;
 int generator = 0;  //Selecting 0, 1, 2 selects from three different random generators
-const char* filename = "output.txt"
+const char* filename = "output.txt";
 
 // Variable for selecting which side of the coin gets more bias
 // where 1 > bias and 0 < bias. Bias is initialized to 0.5 to indicated an unbiased coin.
@@ -29,10 +29,10 @@ double bias = 0.5;
 //Boolean variable for selecting the mode. Default is "0" or "stat mode".
 
 int main() {
-    bgen("gen", 100000, 10, 0.1, "output.txt");
+    bgen("gen", 100000, 10, 0.1, 0, "output.txt");
 }
 
-void bgen(const char* mode, int N, int T, float P, const char* filename)
+void bgen(const char* mode, int N, int T, float P, int G, const char* filename)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -73,17 +73,5 @@ int randomizer()
     for (auto p : hist) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2)
                   << p.first << ' ' << std::string(p.second/200, '*') << '\n';
-    }
-}
-
-bool getGenerator() {
-    int mode = 0;
-    cout << "Pick one";
-    cin >> mode;
-    switch(mode) {
-        case 1 :
-            return 1;
-        case 0 :
-            return 0;
     }
 }
