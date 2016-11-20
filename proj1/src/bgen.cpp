@@ -7,9 +7,21 @@
 #include <cmath>
 using namespace std;
 
-/*************FUNCTION PROTOTYPES************/
+/*************FUNCTION PROTOTYPE************/
 
 void bgen(const char*, int, int, float, int, const char*);
+
+/********************************************/
+
+/**************ERROR CONSTANTS***************/
+
+const int INCORRECT_ARGUMENT_AMOUNT = 0;
+const int INCORRECT_MODE = 1;
+const int INCORRECT_N = 2;
+const int INCORRECT_T = 3;
+const int INCORRECT_P = 4;
+const int INCORRECT_G = 5;
+const int INCORRECT_FILENAME = 6;
 
 /********************************************/
 
@@ -25,34 +37,34 @@ int main(int argc, char** argv) {
    //Error checking for number of arguments
     if (argc > 7) {
       cout << "Eror: You gave me too many arguments. Make sure you have all the arguments needed, there should be 7." << endl;
-      exit(0);
+      exit(INCORRECT_ARGUMENT_AMOUNT);
     } else if (argc < 7) {
       cout << "Error: You gave me too few arguments. Make sure you have all the arguments needed, there should be 7." << endl;
-      exit(0);
+      exit(INCORRECT_ARGUMENT_AMOUNT);
     }
 
     //Error checking for an acceptable number of experiments
     if (N < 1) {
       cout << "Error: I need a value for N that is greater than 0 in order to run an experiment. Try inputting 1 for N." << endl;
-      exit(0);
+      exit(INCORRECT_N);
     }
 
     //Error checking for ability to create uint32_t
     if (N < 2 && T < 32) {
       cout << "Error: I need a product of N*T that is greater than or equal to 32 in order to ouput a number." << endl;
-      exit(0);
+      exit(INCORRECT_T);
     }
 
     //Error checking for correct bias
     if (P < 0.0 || P > 1.0) {
-      cout << "Error: You entered an out-of-bounds value for the P argument. Believe me. Trust me. That, I can tell you.";
-      exit (0);
+      cout << "Error: You entered an out-of-bounds value for the P argument. Believe me. Trust me. That, I can tell you." << endl;
+      exit (INCORRECT_P);
     }
 
     //Error checking for the correct generator
     if (G < 0 || G > 2) {
-      cout << "Error: That random number generator is not supported. I can only accept values 0, 1, or 2 for the G argument. Try one of those!" << endl;
-      exit(0);
+      cout << "Error: That random number generator is not supported. I can only accept values 0, 1, or 2 for the G argument." << endl << "Try one of those!" << endl;
+      exit(INCORRECT_G);
     }
 
     /*//Error checking for the correct bgen utility mode
@@ -80,7 +92,6 @@ void bgen(const char* mode, int N, int T, float P, int G, const char* filename) 
         std::random_device minstd;
         std::minstd_rand gen0(minstd());
         std::bernoulli_distribution d(P);
-
         for(int n=0; n<N; ++n) {
           trialTracker = 0;
           for(int i=0; i<T; ++i){
